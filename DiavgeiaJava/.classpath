@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/CSVParserLibs"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/VirtJenaLibs"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/gdataLibs"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/JenaLibs"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/JenaLibs272"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/JSONLibs"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/ApacheCommons26"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/EzMorph"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/DynaBean"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/JAF"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/JavaMail"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/IOCommons"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/CommonsCollections"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
