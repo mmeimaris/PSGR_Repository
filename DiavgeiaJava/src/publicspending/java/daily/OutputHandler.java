@@ -113,7 +113,7 @@ public class OutputHandler {
 		//selectedPayerBubblesJSON();
 		//selectedPayeeBubblesJSON();
 		//selectedPayeeProfile();
-		aggregateAmountCounterJSON();
+		//aggregateAmountCounterJSON(date);
 		System.out.println(new Date());
 		System.out.println("1. Top Payments By Timeframe");
 		topPaymentsTimeframeJSON();
@@ -144,7 +144,7 @@ public class OutputHandler {
 		//topPayeeProfile();
 		System.out.println(new Date());
 		System.out.println("9. Counter");		
-		aggregateAmountCounterJSON();
+		aggregateAmountCounterJSON(date);
 		System.out.println(new Date());
 		System.out.println("10. Main Timeplot");		
 		aggregateAmountPerTimeframeJSON(parameters2);
@@ -164,6 +164,7 @@ public class OutputHandler {
 		//handleNicknamesSpreadsheet();		
 		writeLastUpdateDate(date);
 	}
+		
 	
 	public void writeLastUpdateDate(Date date){
 		try {  
@@ -203,7 +204,7 @@ public class OutputHandler {
 	
 	
 	
-	public void aggregateAmountCounterJSON(){
+	public void aggregateAmountCounterJSON(Date date){
 		
 		Long todayAmount = new Long(0), aggregate = new Long(0);
 		String query = SPARQLQueries.ruleSet + SPARQLQueries.prefixes + 
@@ -231,12 +232,59 @@ public class OutputHandler {
 	 	 } 	   
 		vqe2.close();
 		Long initial = (aggregate-todayAmount);
+		String query3 = SPARQLQueries.numberOfDecisions();
+		VirtuosoQueryExecution vqe3 = VirtuosoQueryExecutionFactory.create (query3, graph);
+		ResultSet results3 = vqe3.execSelect();
+		String decisionCountString = "";
+		while (results3.hasNext()) {
+			QuerySolution rs3 = results3.nextSolution();
+	 	   	Literal decisionCount = rs3.getLiteral("decisionCount");
+	 	   	decisionCountString = decisionCount.getString();	 	   	
+	 	 } 	   
+		vqe3.close();
+		String query4 = SPARQLQueries.numberOfPayers();
+		VirtuosoQueryExecution vqe4 = VirtuosoQueryExecutionFactory.create (query4, graph);
+		ResultSet results4 = vqe4.execSelect();
+		String payerCountString = "";
+		while (results4.hasNext()) {
+			QuerySolution rs4 = results4.nextSolution();
+	 	   	Literal payerCount = rs4.getLiteral("payerCount");
+	 	   	payerCountString = payerCount.getString();	 	   	
+	 	 } 	   
+		vqe4.close();
+		String query5 = SPARQLQueries.numberOfPayees();
+		VirtuosoQueryExecution vqe5 = VirtuosoQueryExecutionFactory.create (query5, graph);
+		ResultSet results5 = vqe5.execSelect();
+		String payeeCountString = "";
+		while (results5.hasNext()) {
+			QuerySolution rs5 = results5.nextSolution();
+	 	   	Literal payeeCount = rs5.getLiteral("payeeCount");
+	 	   	payeeCountString = payeeCount.getString();	 	   	
+	 	 } 	   
+		vqe5.close();
+		String query6 = SPARQLQueries.numberOfTriples();
+		VirtuosoQueryExecution vqe6 = VirtuosoQueryExecutionFactory.create (query6, graph);
+		ResultSet results6 = vqe6.execSelect();
+		String tripleCountString = "";
+		while (results6.hasNext()) {
+			QuerySolution rs6 = results6.nextSolution();
+	 	   	Literal tripleCount = rs6.getLiteral("tripleCount");
+	 	   	tripleCountString = tripleCount.getString();	 	   	
+	 	 } 	   
+		vqe6.close();
+		SimpleDateFormat dayFormat = new SimpleDateFormat("dd/MM/yyyy");
 		try{
 			  // Create file 			  
 			  FileWriter fstream = new FileWriter(fs.jsonDateFolder + "counter/counter.vaf");
 			  BufferedWriter out = new BufferedWriter(fstream);
 			  
 			  out.write("var initial= " +  initial.toString() + "; \n" + "var final= " + aggregate.toString()+";");
+			  out.write("var decisions = " + decisionCountString + "; \n");
+			  out.write("var payments = " + aggregate.toString() + "; \n");
+			  out.write("var payers = " + payerCountString + "; \n");
+			  out.write("var payere = " + payeeCountString + "; \n");
+			  out.write("var lastUpdate = " + dayFormat.format(date) + ";");
+			  out.write("var triples = " + tripleCountString + "; \n");			  
 			  //Close the output stream
 			  out.close();
 			  }catch (Exception e){//Catch exception if any

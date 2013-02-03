@@ -1566,4 +1566,26 @@ public static String timeplotPerPayeeDescription(String timeframeGraph, String p
 						    "}";		
 			return str1;
 	}
+	
+	public static String numberOfDecisions(){
+		String str1 = "SELECT (count(distinct ?d) as ?decisionCount) FROM <"+RoutineInvoker.graphName+"> WHERE" +
+						"{?d a psgr:Decision .}";
+		return str1;
+	}
+	
+	public static String numberOfPayers(){
+		String str1 = "SELECT (count(distinct ?payer) as ?payerCount) FROM <"+RoutineInvoker.graphName+"> WHERE" +
+					  "{?payment a psgr:Payment ; psgr:payer ?payer . ?payer psgr:validAfm \"true\"}";
+		return str1;
+	}
+	public static String numberOfPayees(){
+		String str1 = "SELECT (count(distinct ?payee) as ?payeeCount) FROM <"+RoutineInvoker.graphName+"> WHERE" +
+					  "{?payment a psgr:Payment ; psgr:payee ?payee . ?payee psgr:validAfm \"true\"}";
+		return str1;
+	}
+	
+	public static String numberOfTriples(){
+		String str1 = "SELECT (count(*) as ?tripleCount) WHERE {?s ?p ?o}";
+		return str1;
+	}
 }

@@ -390,7 +390,7 @@ public ArrayList<HashMap<String, String>> getDecisionsInXML(double fetchCount) t
 		int requiredCallsCount = 0;		
 		String yesterday = fs.yesterday, today  = fs.today;
 		//Start Test dates, uncomment to set test dates
-		yesterday = "30-01-2013";
+		//yesterday = "30-01-2013";
 		//today = "18-12-2012";
 		//End Test dates					 
 		
