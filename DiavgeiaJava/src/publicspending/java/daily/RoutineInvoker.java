@@ -30,10 +30,12 @@ public class RoutineInvoker {
 	static String overallResource = "<"+Ontology.diavgeiaPrefix+"Overall>", falseGraphName = "fake.graph", cpvGraphName = "";
 	
 	static boolean testMode;
+	String method = "";
 	//static boolean testMode = true;
 	
 	//public static void main(String[] args) {			
-	public RoutineInvoker(String[] args, boolean testMode){
+	public RoutineInvoker(String[] args, boolean testMode, String method){
+		this.method = method;
 		this.testMode = testMode;	//set test mode (true or false)
 		FileStructure fs = null;	//initialize FileStructure object
 		HelperMethods hm = new HelperMethods();	//build a HelperMethods object (TODO make static calls to HM?)
@@ -55,8 +57,12 @@ public class RoutineInvoker {
 			System.out.println("Done.");
 			DecisionGatherer decisionGatherer = new DecisionGatherer(fs);							
 			try {
-				//ArrayList<HashMap<String, String>> decisionsList = decisionGatherer.getDecisions(500.00);
-				ArrayList<HashMap<String, String>> decisionsList = decisionGatherer.getDecisionsInXML(500.00);
+				ArrayList<HashMap<String, String>> decisionsList = null;
+				if(method.equals("JSON")) decisionsList = decisionGatherer.getDecisions(500.00);
+				else if(method.equals("XML")) decisionsList = decisionGatherer.getDecisionsInXML(500.00);
+				else if(method.equals("DB")) decisionsList = decisionGatherer.getDecisionsFromDB();
+				//ArrayList<HashMap<String, String>> decisionsList = decisionGatherer.getDecisionsInXML(500.00);
+				//ArrayList<HashMap<String, String>> decisionsList = decisionGatherer.getDecisionsFromDB();
 				Iterator it = decisionsList.iterator();
 				RDFModelWriter rdfModelWriter = new RDFModelWriter(fs);
 				while(it.hasNext()){
@@ -137,18 +143,20 @@ public class RoutineInvoker {
 					//nc.uniqueNamesOnIteration();
 				}
 				
-			} catch (IOException e) {			
+			} catch (Exception e) {			
 				e.printStackTrace();
 			}
 		}
 		else
 		{
 			System.out.println("Test Mode on...");	
+			DecisionGatherer decisionGatherer = new DecisionGatherer(fs);
+			decisionGatherer.getDecisionsFromDB();
 			//StatisticsHandler sh = new StatisticsHandler(hm.getUniversalDecisionDates());
 			//SOAPHandler gsisHandler = new SOAPHandler(fs);
 			//OutputHandler oh = new OutputHandler(fs);
-			SOAPHandler gsisHandler = new SOAPHandler(fs);
-			gsisHandler.soapHandler(1);
+			//SOAPHandler gsisHandler = new SOAPHandler(fs);
+			//gsisHandler.soapHandler(1);
 			/*DecisionGatherer decisionGatherer = new DecisionGatherer(fs);
 			try {
 				decisionGatherer.getDecisionsInXML(500.00);

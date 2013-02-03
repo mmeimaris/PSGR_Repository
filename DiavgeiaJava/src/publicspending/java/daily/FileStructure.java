@@ -16,7 +16,7 @@ public class FileStructure {
 	public String rootRDFFolder = rootFolder + "RDF-Files/";
 	public String rootJSONFolder = rootFolder + "JSONOutput/";
 	public String rootFaultyDatesFolder = rootFolder + "FaultyDates/";
-	public String yesterday = null, today = null, jsonDateFolder = null, rdfDateFolder = null, csvDateFolder = null,
+	public String yesterday = null, today = null, yesterdayYYMMDD = null, todayYYMMDD = null, jsonDateFolder = null, rdfDateFolder = null, csvDateFolder = null,
 			validRDFDateFolder = null, invalidRDFDateFolder = null, decisionCountFolder = null, dataFolder = null;
 	public String csvDateFile = null, validRDFDateFile = null, invalidRDFDateFile = null, decisionCountFile = null,
 			soapRequestLocation = null, soapResponseLocation = null, gsisLocation = null; 
@@ -44,8 +44,11 @@ public class FileStructure {
 		Date todayDate = new Date();		
 		Date dateYesterday = new Date(todayDate.getTime() - MILLIS_IN_DAY);
 		SimpleDateFormat dayFormat = new SimpleDateFormat("dd-MM-yyyy");
+		SimpleDateFormat dayFormat2 = new SimpleDateFormat("yyyy-MM-dd");
 		yesterday = dayFormat.format(dateYesterday);
 		today  = dayFormat.format(todayDate);
+		yesterdayYYMMDD = dayFormat2.format(dateYesterday);
+		todayYYMMDD = dayFormat2.format(todayDate);
 	}
 	
 	private void setFolderStrings(){

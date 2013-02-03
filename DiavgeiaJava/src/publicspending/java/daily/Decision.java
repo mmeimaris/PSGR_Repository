@@ -7,9 +7,15 @@ public class Decision {
 	   ,date,orgLabel,orgId,orgUnitLabel,orgUnitId
 	   ,fekNumber,fekIssue,fekYear,tagLabel,tagId
 	   ,payerName,payerAfm,payeeName,payeeAfm, cpv
-	   ,kae,paymentCategory,amount, description, signer, tagArray;
+	   ,kae,paymentCategory,amount, description, signer, tagArray, thematiki;
 
+public void setThematiki(String thematiki){
+	this.thematiki = thematiki;
+}
 
+public String getThematiki(){
+	return this.thematiki;
+}
 public void setTagArray(String tagArray){
 	this.tagArray = tagArray;	
 }

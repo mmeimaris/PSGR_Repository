@@ -15,5 +15,6 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/JavaMail"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/IOCommons"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/CommonsCollections"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/MySQLConnectorJ"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

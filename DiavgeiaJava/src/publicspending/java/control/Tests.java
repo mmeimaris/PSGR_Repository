@@ -87,6 +87,7 @@ public class Tests {
 	
 	public void kotsidas(){
 
+		
 		String dbtime;
 		String dbUrl = "jdbc:mysql://dbo8.diavgeia.gov.gr:3306";
 		String dbClass = "com.mysql.jdbc.Driver";
@@ -94,7 +95,7 @@ public class Tests {
 
 		try {
 
-		Class.forName("com.mysql.jdbc.Driver");
+		//Class.forName("com.mysql.jdbc.Driver");
 		Connection con = DriverManager.getConnection (dbUrl, "opendata", "opendata@diavgeia");
 		Statement stmt = con.createStatement();
 		java.sql.ResultSet rs = stmt.executeQuery(query);
@@ -107,9 +108,9 @@ public class Tests {
 		con.close();
 		} //end try
 
-		catch(ClassNotFoundException e) {
+		/*catch(ClassNotFoundException e) {
 		e.printStackTrace();
-		}
+		}*/
 
 		catch(SQLException e) {
 		e.printStackTrace();

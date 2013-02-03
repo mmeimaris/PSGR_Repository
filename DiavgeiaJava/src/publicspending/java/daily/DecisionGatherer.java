@@ -14,6 +14,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.Set;
 
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
@@ -389,7 +390,7 @@ public ArrayList<HashMap<String, String>> getDecisionsInXML(double fetchCount) t
 		int requiredCallsCount = 0;		
 		String yesterday = fs.yesterday, today  = fs.today;
 		//Start Test dates, uncomment to set test dates
-		yesterday = "27-01-2013";
+		yesterday = "30-01-2013";
 		//today = "18-12-2012";
 		//End Test dates					 
 		
@@ -457,7 +458,33 @@ public ArrayList<HashMap<String, String>> getDecisionsInXML(double fetchCount) t
 	            
 	}
 
-
+	public ArrayList<HashMap<String,String>> getDecisionsFromDB(){
+		
+		String yesterday = fs.yesterdayYYMMDD, today  = fs.todayYYMMDD;
+		//test dates
+		//yesterday = "2013-01-03";
+		//today = "2013-01-04";
+		//test dates end
+		DiavgeiaDBAccess dba = new DiavgeiaDBAccess(yesterday, today);
+		ArrayList<HashMap<String,String>> decisionList = new ArrayList<HashMap<String,String>>();
+		try {
+			decisionList = dba.readDataBase();
+			for(HashMap<String,String> decisionMap : decisionList){
+				Set keySet = decisionMap.keySet();
+				Iterator it = keySet.iterator();
+				/*System.out.println("-----------------------------------------------------------");
+				while(it.hasNext()){
+					String field = (String)it.next();
+					System.out.println(field + ": " + decisionMap.get(field));
+				}
+				System.out.println("-----------------------------------------------------------");*/
+			}
+			return decisionList;
+		} catch (Exception e) {			
+			e.printStackTrace();
+			return null;
+		}
+	}
 
 	public static String httpGet(String urlStr) throws IOException {
 	  URL url = new URL(urlStr);
