@@ -282,7 +282,7 @@ public class OutputHandler {
 			  out.write("var decisions = " + decisionCountString + "; \n");
 			  out.write("var payments = " + aggregate.toString() + "; \n");
 			  out.write("var payers = " + payerCountString + "; \n");
-			  out.write("var payere = " + payeeCountString + "; \n");
+			  out.write("var payees = " + payeeCountString + "; \n");
 			  out.write("var lastUpdate = " + dayFormat.format(date) + ";");
 			  out.write("var triples = " + tripleCountString + "; \n");			  
 			  //Close the output stream
