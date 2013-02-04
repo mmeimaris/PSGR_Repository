@@ -305,8 +305,7 @@ public class OutputHandler {
 			if(i==0){
 				timeframe = "day"; 
 				selector = SPARQLQueries.daySelector;
-				dates = lastDays;
-				
+				dates = lastDays;								
 			}
 			else if(i==1){
 				timeframe = "week";
@@ -326,6 +325,7 @@ public class OutputHandler {
 			String[] dateForWriter = {"", ""};
 			Iterator datesIt = dates.iterator();			
 			ArrayList<String[]> writerList = new ArrayList<String[]>();
+			System.out.println("DEBUGGING: ");
 			while(datesIt.hasNext()){
 				String dateString = (String) datesIt.next();					
 				dateForWriter = getTimeInterval(dateString, timeframe);				
