@@ -493,8 +493,10 @@ public class OutputHandler {
 				Double rest = new Double(0);
 				while (resultsRest.hasNext()) {
 			 	   	QuerySolution rsRest = resultsRest.nextSolution();
-			 	   	Literal restSum = rsRest.getLiteral("sum");
-			 	    rest = restSum.getDouble();
+			 	   	try{
+				 	   	Literal restSum = rsRest.getLiteral("sum");
+				 	    rest = restSum.getDouble();
+			 	   	}catch(Exception e){rest = 0.0;}
 				}
 				vqeRest.close();
 				Double restDouble = Math.abs(rest-sumD);				
