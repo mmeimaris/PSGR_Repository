@@ -330,7 +330,7 @@ public class OutputHandler {
 				String dateString = (String) datesIt.next();					
 				dateForWriter = getTimeInterval(dateString, timeframe);				
 				String query = SPARQLQueries.topPaymentsDescription(dateString, selector , timeframe);	
-				//System.out.println(query);
+				System.out.println(query);
 				VirtuosoQueryExecution vqe = VirtuosoQueryExecutionFactory.create (query, graph);
 				ResultSet results = vqe.execSelect();
 				Integer count = 1;						
